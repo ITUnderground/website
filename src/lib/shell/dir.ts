@@ -34,8 +34,6 @@ class Dir {
     _locate(path: string[]): Directory | File | null {
         let current: Directory = this._root
 
-        console.log(path);
-
         // Format special paths such as .., . or ~
         for (let i = 0; i < path.length; i++) {
             if (path[i] === "..") {
@@ -49,8 +47,6 @@ class Dir {
                 i--
             }
         }
-
-        console.log(path);
 
         // Navigate to actual directory
         for (const dir of path) {
