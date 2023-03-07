@@ -47,9 +47,11 @@
 
 <div class="text-lg leading-5">
 	{#each log as line}
+        {#if line.user && line.server && line.cwd}
 		<span class="text-green-500">{line.user}@{line.server}</span>:<span class="text-purple-500"
 			>{line.cwd}</span
 		>$ <span>{line.command}</span>
+        {/if}
 		{#if line.output.length}
 			<br />
 			<span class="whitespace-pre-wrap">
