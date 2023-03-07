@@ -22,7 +22,8 @@ type AccessObject = {
         raw: string,
     },
     cli: CLI,
-    dir: Dir
+    dir: Dir,
+    js: (fn: () => void) => any,
 }
 
 // Dir object for directory structure
@@ -102,17 +103,22 @@ class CLI {
                 raw: parsed.raw,
             },
             cli: this,
-            dir
+            dir,
+            js: this.js.bind(this),
         })
     }
 
     /**
-     * Echoes a list of arguments to the console
-     * @param args list of arguments to echo
-     * @returns string of arguments joined by spaces
+     * Runs a javascript function in the browser
+     * @param fn function to run
      */
-    echo(...args: []) {
-        return args.join(" ")
+    js(fn: () => void) {
+        // const newScript = document.createElement("script")
+        // const inlineScript = document.createTextNode(`(${fn.toString()})()`)
+        // newScript.appendChild(inlineScript);
+        // document.body.appendChild(newScript);
+        // Return the same thing as the function
+        return fn()
     }
 
     /**
